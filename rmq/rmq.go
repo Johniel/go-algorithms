@@ -1,7 +1,9 @@
 package rmq
 
+// Less is RMQ compare function type.
 type Less func(a, b interface{}) bool
 
+// RMQ is Range Minimum Query data structure.
 type RMQ struct {
 	data []interface{}
 	n    int
@@ -9,7 +11,8 @@ type RMQ struct {
 	ini  interface{}
 }
 
-func Init(less Less, size int, ini interface{}) *RMQ {
+// New returns an initialized RMQ.
+func New(less Less, size int, ini interface{}) *RMQ {
 	rmq := new(RMQ)
 	rmq.n = 1
 	for rmq.n < size {
@@ -24,6 +27,7 @@ func Init(less Less, size int, ini interface{}) *RMQ {
 	return rmq
 }
 
+// Update updates i-th value with e.
 func (rmq *RMQ) Update(i int, e interface{}) {
 	i += rmq.n - 1
 	rmq.data[i] = e

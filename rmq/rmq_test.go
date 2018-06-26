@@ -11,7 +11,7 @@ func TestMin(t *testing.T) {
 	size := 100
 	max := 1 << 30
 	cmp := func(a, b interface{}) bool { return a.(int) < b.(int) }
-	rmq := Init(cmp, size, max)
+	rmq := New(cmp, size, max)
 
 	a := make([]int, size)
 	for i := range a {
@@ -40,7 +40,7 @@ func TestMax(t *testing.T) {
 	size := 100
 	min := -1
 	cmp := func(a, b interface{}) bool { return a.(int) > b.(int) }
-	rmq := Init(cmp, size, min)
+	rmq := New(cmp, size, min)
 
 	a := make([]int, size)
 	for i := range a {

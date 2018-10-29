@@ -1,9 +1,9 @@
 package rmq
 
-// Less is RMQ compare function type.
+// Less is a RMQ comparing function type.
 type Less func(a, b interface{}) bool
 
-// RMQ is Range Minimum Query data structure.
+// RMQ is a Range Minimum Query.
 type RMQ struct {
 	data []interface{}
 	n    int

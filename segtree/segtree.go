@@ -41,7 +41,7 @@ func (segtree *SegmentTree) Update(idx int, x interface{}) {
 
 func (segtree *SegmentTree) query(begin, end, idx, a, b int) interface{} {
 	if b <= begin || end <= a {
-		return 0
+		return segtree.e
 	}
 	if begin <= a && b <= end {
 		return segtree.data[idx]

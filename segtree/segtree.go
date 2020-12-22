@@ -18,6 +18,7 @@ type SegmentTree struct {
 
 func NewSegmentTree(n int, e interface{}, op func(interface{}, interface{}) interface{}) *SegmentTree {
 	segtree := new(SegmentTree)
+	segtree.e = e
 	segtree.op = op
 	segtree.n = 1
 	for segtree.n < n {
@@ -25,7 +26,7 @@ func NewSegmentTree(n int, e interface{}, op func(interface{}, interface{}) inte
 	}
 	segtree.data = make([]interface{}, segtree.n*2-1)
 	for i := 0; i < segtree.n*2-1; i++ {
-		segtree.data[i] = e
+		segtree.data[i] = segtree.e
 	}
 	return segtree
 }

@@ -31,12 +31,21 @@ func (h *minHeap) Pop() interface{} {
 }
 
 type edge struct {
-	src  int
-	dst  int
-	cap  int64
-	flow int64
-	cost int64
-	rev  int
+	src        int
+	dst        int
+	cap        int64
+	flow       int64
+	cost       int64
+	rev        int
+	isResidual bool
+}
+
+type Edge struct {
+	Src  int
+	Dst  int
+	Cap  int64
+	Flow int64
+	Cost int64
 }
 
 func (e *edge) residue() int64 {
@@ -67,8 +76,8 @@ func NewMinCostMaxFlow(n int) *MinCostMaxFlow {
 }
 
 func (f *MinCostMaxFlow) AddEdge(src int, dst int, cost, cap int64) {
-	f.g[src] = append(f.g[src], &edge{src: src, dst: dst, cap: cap, flow: 0, cost: +cost, rev: len(f.g[dst])})
-	f.g[dst] = append(f.g[dst], &edge{src: dst, dst: src, cap: cap, flow: cap, cost: -cost, rev: len(f.g[src]) - 1})
+	f.g[src] = append(f.g[src], &edge{src: src, dst: dst, cap: cap, flow: 0, cost: +cost, rev: len(f.g[dst]), isResidual: false})
+	f.g[dst] = append(f.g[dst], &edge{src: dst, dst: src, cap: cap, flow: cap, cost: -cost, rev: len(f.g[src]) - 1, isResidual: true})
 }
 
 func (f *MinCostMaxFlow) sssp(src int, dst int) bool {
@@ -133,4 +142,22 @@ func (f *MinCostMaxFlow) Run(src int, snk int, req int64) (cost int64, flowed in
 	}
 
 	return cost, flowed
+}
+
+func (f *MinCostMaxFlow) Edges() []*Edge {
+	es := []*Edge{}
+	for _, a := range f.g {
+		for _, e := range a {
+			if !e.isResidual {
+				es = append(es, &Edge{
+					Src:  e.src,
+					Dst:  e.dst,
+					Cap:  e.cap,
+					Flow: e.flow,
+					Cost: e.cost,
+				})
+			}
+		}
+	}
+	return es
 }

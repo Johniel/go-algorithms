@@ -1,4 +1,4 @@
-package acc
+package prefixsum
 
 import (
 	"testing"

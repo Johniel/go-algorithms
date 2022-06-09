@@ -1,4 +1,4 @@
-package UnionFind
+package unionfind
 
 import (
 	"testing"

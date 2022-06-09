@@ -1,4 +1,4 @@
-package UnionFind
+package unionfind
 
 // UnionFind is disjoint set data structure
 type UnionFind struct {

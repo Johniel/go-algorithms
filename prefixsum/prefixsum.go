@@ -1,11 +1,11 @@
-package acc
+package prefixsum
 
-type Acc struct {
+type PrefixSum struct {
 	sum []int64
 }
 
-func NewAcc(values []int64) *Acc {
-	acc := &Acc{}
+func NewPrefixSum(values []int64) *PrefixSum {
+	acc := &PrefixSum{}
 	acc.sum = append(acc.sum, 0)
 	var sum int64
 	for _, v := range values {
@@ -15,6 +15,6 @@ func NewAcc(values []int64) *Acc {
 	return acc
 }
 
-func (a *Acc) Query(begin, end int) int64 {
+func (a *PrefixSum) Query(begin, end int) int64 {
 	return a.sum[end] - a.sum[begin]
 }

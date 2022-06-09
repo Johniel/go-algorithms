@@ -12,7 +12,7 @@ func Test(t *testing.T) {
 		values = append(values, int64(i))
 	}
 
-	a := NewAcc(values)
+	a := NewPrefixSum(values)
 	for i := 0; i < len(values); i++ {
 		for j := i; j < len(values); j++ {
 			var sum int64

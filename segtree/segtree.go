@@ -1,6 +1,4 @@
-// https://atcoder.jp/contests/abc185/tasks/abc185_f
-
-package main
+package segtree
 
 import (
 	"bufio"
@@ -56,36 +54,37 @@ func (segtree *SegmentTree) Query(begin, end int) interface{} {
 	return segtree.query(begin, end, 0, 0, segtree.n)
 }
 
-func main() {
-	const N = 300000 + 1
+// https://atcoder.jp/contests/abc185/tasks/abc185_f
+// func main() {
+// 	const N = 300000 + 1
 
-	segtree := NewSegmentTree(N, 0, func(a, b interface{}) interface{} { return a.(int) ^ b.(int) })
+// 	segtree := NewSegmentTree(N, 0, func(a, b interface{}) interface{} { return a.(int) ^ b.(int) })
 
-	var n, q int
-	fmt.Scan(&n, &q)
+// 	var n, q int
+// 	fmt.Scan(&n, &q)
 
-	sc := bufio.NewScanner(os.Stdin)
-	sc.Split(bufio.ScanWords)
+// 	sc := bufio.NewScanner(os.Stdin)
+// 	sc.Split(bufio.ScanWords)
 
-	for i := 0; i < n; i++ {
-		sc.Scan()
-		a, _ := strconv.Atoi(sc.Text())
-		segtree.Update(i, a)
-	}
+// 	for i := 0; i < n; i++ {
+// 		sc.Scan()
+// 		a, _ := strconv.Atoi(sc.Text())
+// 		segtree.Update(i, a)
+// 	}
 
-	for i := 0; i < q; i++ {
-		sc.Scan()
-		t, _ := strconv.Atoi(sc.Text())
-		sc.Scan()
-		x, _ := strconv.Atoi(sc.Text())
-		sc.Scan()
-		y, _ := strconv.Atoi(sc.Text())
-		if t == 1 {
-			z := segtree.Query(x-1, x)
-			segtree.Update(x-1, (interface{})(z.(int)^y))
-		}
-		if t == 2 {
-			fmt.Println(segtree.Query(x-1, y))
-		}
-	}
-}
+// 	for i := 0; i < q; i++ {
+// 		sc.Scan()
+// 		t, _ := strconv.Atoi(sc.Text())
+// 		sc.Scan()
+// 		x, _ := strconv.Atoi(sc.Text())
+// 		sc.Scan()
+// 		y, _ := strconv.Atoi(sc.Text())
+// 		if t == 1 {
+// 			z := segtree.Query(x-1, x)
+// 			segtree.Update(x-1, (interface{})(z.(int)^y))
+// 		}
+// 		if t == 2 {
+// 			fmt.Println(segtree.Query(x-1, y))
+// 		}
+// 	}
+// }
